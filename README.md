@@ -1,11 +1,11 @@
 
-# 🚀 Автоматизированный ML-пайплайн для диагностики рака груди с Airflow и MinIO
+#  Автоматизированный ML-пайплайн для диагностики рака груди с Airflow и MinIO
 
 ## 📌 Обзор проекта
 **Автоматизированный ETL-пайплайн** для прогнозирования диагноза рака молочной железы с использованием:
 - **Apache Airflow 2.7.1** для оркестрации
 - **MinIO** как S3-совместимого хранилища
-- **Логистической регрессии** (scikit-learn 1.3.0)
+- **Логистической регрессии** (scikit-learn)
 - **Датасета Breast Cancer Wisconsin** из UCI ML репозитория
 
 
@@ -24,7 +24,7 @@ graph TD
     C --> G[Метрики]
     B --> H[PostgreSQL]
     B --> I[Redis]
-
+```
 
 ### Структура DAG
 ```mermaid
@@ -77,6 +77,11 @@ open http://localhost:9001  # MinIO (логин: minioadmin/minioadmin)
 ```
 
 ### 3. Запуск пайплайна
+Через браузер:
+зайдите http://localhost:8080 логин и пароль admin:admin
+Далее нажмите на запуск
+![image](https://github.com/user-attachments/assets/c0b7e208-f8ef-4108-8b6a-8c88f8427d9f)
+
 ```bash
 # Ручной запуск DAG
 curl -X POST "http://localhost:8080/api/v1/dags/breast_cancer_pipeline/dagRuns" \
@@ -125,28 +130,20 @@ graph LR
 ## 📊 Пример результатов
 **metrics.json**
 ```json
-{
-  "run_id": "2025-06-17T12:00:00",
-  "metrics": {
-    "accuracy": 0.956,
-    "precision": 0.963,
-    "recall": 0.934,
-    "f1": 0.948,
-    "roc_auc": 0.982
-  },
-  "artфакты": {
-    "модель": "s3://ml-pipeline/models/logreg_v1.joblib",
-    "матрица_ошибок": "s3://ml-pipeline/results/plots/cm.png"
-  }
-}
+{"accuracy": 0.9736842105263158, "precision": 0.9761904761904762, "recall": 0.9534883720930233, "f1_score": 0.9647058823529412}
 ```
 
 ## 🖼️ Скриншоты системы
-![Airflow DAG](https://i.imgur.com/5X8k9dP.png)
+![image](https://github.com/user-attachments/assets/0ba54d5b-203c-48c0-8f18-2cc90c672947)
+
 *Выполнение пайплайна в интерфейсе Airflow*
 
-![Содержимое MinIO](https://i.imgur.com/9QZsW3x.png)
 *Артефакты в MinIO хранилище*
+![image](https://github.com/user-attachments/assets/22e7a0d7-f2e0-4db7-b012-c727270495d3)
+![image](https://github.com/user-attachments/assets/487b9834-7fe2-4f1b-ae2c-b21a4107f5fe)
+![image](https://github.com/user-attachments/assets/2f2736f7-4939-4d9a-8ebd-b1b32f723e94)
+![image](https://github.com/user-attachments/assets/47f3d3ac-df0c-4f22-81fc-230306f33ced)
+![image](https://github.com/user-attachments/assets/4d8427da-599f-4f0e-805c-189b93e951ba)
 
 ## 📚 Документация
 - [Официальная документация Airflow](https://airflow.apache.org/docs/)
@@ -155,7 +152,3 @@ graph LR
 
 ---
 
-**✨ Профессиональный совет:** Используйте `make monitor` для мониторинга логов:
-```bash
-docker-compose logs -f airflow-webserver airflow-scheduler minio
-```
