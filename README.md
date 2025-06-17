@@ -1,4 +1,4 @@
-```markdown
+
 # 🚀 Автоматизированный ML-пайплайн для диагностики рака груди с Airflow и MinIO
 
 ## 📌 Обзор проекта
@@ -24,7 +24,7 @@ graph TD
     C --> G[Метрики]
     B --> H[PostgreSQL]
     B --> I[Redis]
-```
+
 
 ### Структура DAG
 ```mermaid
@@ -65,8 +65,8 @@ docker 24.0+
 ### 2. Развертывание
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/ваш-репозиторий/ml-pipeline.git
-cd ml-pipeline
+git clone https://github.com/data_eng_exam
+cd data_eng_exam
 
 # Запустить сервисы
 docker-compose up -d --build
