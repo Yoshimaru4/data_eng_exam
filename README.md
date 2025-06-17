@@ -70,10 +70,8 @@ cd data_eng_exam
 
 # Запустить сервисы
 docker-compose up -d --build
-
-# Инициализация (подождите 2 минуты)
-open http://localhost:8080  # Airflow (логин: admin/admin)
-open http://localhost:9001  # MinIO (логин: minioadmin/minioadmin)
+#Для остановки сервисов
+docker-compose down
 ```
 
 ### 3. Запуск пайплайна
