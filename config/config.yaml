@@ -1,0 +1,12 @@
+minio:
+  endpoint: "minio:9000"
+  access_key: "minioadmin"
+  secret_key: "minioadmin"
+  bucket: "ml-pipeline"
+  secure: false
+
+data:
+  raw_path: "raw/breast_cancer.csv"
+  processed_path: "processed/"
+  model_path: "models/logistic_regression_model.joblib"
+  metrics_path: "results/metrics.json"
